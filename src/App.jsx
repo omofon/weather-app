@@ -1,12 +1,5 @@
-import './App.css'
-
 function App() {
-
-  return (
-    <>
-      
-    </>
-  )
+  return <>Hello Weather App</>;
 }
 
-export default App
+export default App;
