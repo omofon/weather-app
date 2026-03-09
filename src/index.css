@@ -1,1 +1,64 @@
 @import "tailwindcss";
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("assets/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf");
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("assets/fonts/Bricolage_Grotesque/BricolageGrotesque-VariableFont_opsz,wdth,wght.ttf");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  /* Custom Fonts */
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display:
+    "Bricolage Grotesque", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+
+  /* --- Base Surfaces --- */
+  --color-ink: #02012b;
+  --color-card: #25253f;
+  --color-paper: #2f2f4b;
+  --color-ghost: rgba(255, 255, 255, 0.05);
+
+  /* --- Accents & States --- */
+  --color-accent: #4c6ef5;
+  --color-accent-hover: #3b5bff;
+  --color-accent-active: #2f4eb2;
+
+  /* --- Functional States --- */
+  --color-success: #22c55e;
+  --color-error: #ef4444;
+  --color-warning: #f59e0b;
+
+  /* --- Borders --- */
+  --color-border-dim: rgba(255, 255, 255, 0.05);
+  --color-border-bright: rgba(255, 255, 255, 0.2);
+
+  /* --- Typography --- */
+  --color-font-main: #ffffff;
+  --color-font-muted: #9ca3af;
+  --color-font-inverse: #05051e;
+}
+
+@layer base {
+  body {
+    @apply m-0 p-0 bg-ink text-font-muted font-sans;
+  }
+  h1 {
+    @apply text-font-main font-display font-bold tracking-wide text-wrap px-10 text-5xl;
+  }
+  h2,
+  h3,
+  h4 {
+    @apply font-sans;
+  }
+}
