@@ -10,8 +10,8 @@ async function getCoordinates(query) {
   const response = await fetch(url);
   const data = await response.json();
   if (!data.results?.length) throw new Error(`Location not found: ${query}`);
-  const { latitude, longitude } = data.results[0];
-  return { latitude, longitude };
+  const { latitude, longitude, name, country } = data.results[0];
+  return { latitude, longitude, name, country };
 }
 
 export default getCoordinates;

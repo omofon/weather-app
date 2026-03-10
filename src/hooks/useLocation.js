@@ -3,6 +3,7 @@ import getCoordinates from "../utils/getCoordinates";
 
 export default function useLocation(searchQuery) {
   const [coords, setCoords] = useState(null);
+  const [location, setLocation] = useState(null)
   const [status, setStatus] = useState("idle"); // idle | loading | success | error
   const [error, setError] = useState(null);
 
@@ -18,6 +19,7 @@ export default function useLocation(searchQuery) {
 
         if (data) {
           setCoords({ lat: data.latitude, lon: data.longitude });
+          setLocation({ city: data.name, country: data.country})
           setStatus("success");
         } else {
           throw new Error("Location not found");
@@ -31,5 +33,5 @@ export default function useLocation(searchQuery) {
     fetchCoords();
   }, [searchQuery]);
 
-  return { coords, status, error };
+  return { coords, location, status, error };
 }

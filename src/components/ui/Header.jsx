@@ -80,14 +80,14 @@ export default function Header({ units, setUnits }) {
               <RadioOption
                 id="celsius"
                 name="temperature"
-                label="Celsius (^C)"
+                label="Celsius (°C)"
                 checked={units.temperature === "celsius"}
                 onChange={() => changeTemperature("celsius")}
               />
               <RadioOption
                 id="fahrenheit"
                 name="temperature"
-                label="Farenheit (^F)"
+                label="Farenheit (°F)"
                 checked={units.temperature === "fahrenheit"}
                 onChange={() => changeTemperature("fahrenheit")}
               />
