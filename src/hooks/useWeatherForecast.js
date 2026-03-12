@@ -115,7 +115,7 @@ export function useWeatherForecast(coords, units) {
         feelsLike: `${Math.round(c.variables(1).value())}°`,
         humidity: `${c.variables(2).value()}%`,
         windSpeed: `${Math.round(c.variables(3).value())} ${windSpeedSymbol}`,
-        precipitation: `${c.variables(4).value()} ${precipitationSymbol}`,
+        precipitation: `${Math.round(c.variables(4).value())} ${precipitationSymbol}`,
         condition: getCondition(c.variables(5).value()),
       };
 

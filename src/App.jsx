@@ -40,15 +40,13 @@ function App() {
 
         {status === "error" || weatherError ? (
           <ErrorState message={error || weatherError} />
-        ) : status === "loading" ? (
-          <Loading />
         ) : current ? (
           <WeatherDashboard
             location={location}
             current={current}
             hourly={hourly}
             daily={daily}
-            loading={loading}
+            loading={loading || status === "loading"}
           />
         ) : null}
       </main>
