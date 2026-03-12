@@ -7,8 +7,6 @@ export default function useLocation(searchQuery) {
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState(null);
 
-  // Use a ref to track if we've already tried auto-detecting
-  // This prevents the infinite loop and the dependency error
   const hasAttemptedAutoLocate = useRef(false);
 
   useEffect(() => {
@@ -35,20 +33,20 @@ export default function useLocation(searchQuery) {
       return;
     }
 
-    // 2. AUTO-DETECTION LOGIC (Runs only if no search query and haven't tried yet)
+    // 2. AUTO-DETECTION (Only if no search query and not yet attempted)
     if (!searchQuery && !hasAttemptedAutoLocate.current) {
       hasAttemptedAutoLocate.current = true;
 
       if (!navigator.geolocation) {
-        setError("Geolocation not supported");
-        setStatus("error");
+        setStatus("idle"); // If not supported, just stay idle, don't error.
         return;
       }
 
-      setStatus("loading");
-
+      // We don't set status to "loading" immediately for auto-locate
+      // so we don't flash a loading spinner if the user hasn't allowed it yet.
       navigator.geolocation.getCurrentPosition(
         async (position) => {
+          setStatus("loading");
           const { latitude: lat, longitude: lon } = position.coords;
           try {
             const res = await fetch(
@@ -62,16 +60,14 @@ export default function useLocation(searchQuery) {
             });
             setStatus("success");
           } catch (err) {
-            setError("Failed to identify current city");
-            setStatus("error");
+            // If reverse geocoding fails, we remain idle
+            setStatus("idle");
           }
         },
         (err) => {
-          let msg = "Location denied. Please search manually.";
-          if (err.code === 2) msg = "Position unavailable.";
-          if (err.code === 3) msg = "Location request timed out.";
-          setError(msg);
-          setStatus("error");
+          // PERMISSION_DENIED (1) or other errors:
+          // Just reset to idle. No error state, no UI noise.
+          setStatus("idle");
         },
       );
     }

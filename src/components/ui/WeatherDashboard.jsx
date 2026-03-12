@@ -39,15 +39,15 @@ export default function WeatherDashboard({
   if (!current) return null;
 
   return (
-    <section className="mx-auto max-w-xl md:max-w-5xl lg:max-w-7xl xl:max-w-9xl grid grid-cols-1 lg:grid-cols-12 gap-6 w-full">
+    <section className="mt-5 mx-auto max-w-xl md:max-w-5xl lg:max-w-7xl xl:max-w-9xl grid grid-cols-1 lg:grid-cols-12 gap-8 w-full">
       {/* Left Section: Current & Daily */}
       <div className="lg:col-span-8 space-y-6">
         {/* Current Weather Hero */}
         <div
-          className={`overflow-hidden rounded-2xl min-h-75 flex items-center justify-between p-8 md:p-12 ${
+          className={`overflow-hidden rounded-2xl min-h-75 flex items-center justify-between p-8 ${
             loading
               ? "bg-paper animate-pulse"
-              : "bg-[url('assets/images/bg-today-small.svg')] lg:bg-[url('assets/images/bg-today-large.svg')] bg-cover bg-center"
+              : "bg-[url('/assets/images/bg-today-small.svg')] lg:bg-[url('/assets/images/bg-today-large.svg')] bg-cover bg-center"
           }`}
         >
           <div className="flex flex-col lg:flex-row justify-center items-center lg:justify-between lg:items-center gap-4 w-full">
@@ -55,15 +55,15 @@ export default function WeatherDashboard({
               <h2 className="text-font-main text-4xl font-medium tracking-wide">
                 {`${location?.city || "Unknown"}, ${location?.country || ""}`}
               </h2>
-              <p className="text-font-muted mt-1">{current.date}</p>
+              <p className="text-white/80 text-lg mt-1">{current.date}</p>
             </div>
-            <div className="flex items-center justify-between lg:justify-end gap-4">
+            <div className="flex items-center justify-between lg:justify-end gap-6">
               <img
                 src={current.condition.icon}
                 alt={current.condition.label}
-                className="w-20 h-20"
+                className="w-24 h-24"
               />
-              <span className="text-right text-8xl md:text-9xl font-bold tracking-tighter">
+              <span className="text-right text-8xl md:text-9xl font-bold tracking-wider text-font-main font-display">
                 {current.temp}
               </span>
             </div>
