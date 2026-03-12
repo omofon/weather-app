@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const Card = ({ children, className = "" }) => (
   <div
-    className={`bg-paper border border-border-dim rounded-md hover:bg-paper transition-colors duration-200 p-5 ${className}`}
+    className={`bg-paper border border-border-dim rounded-xl hover:bg-paper transition-colors duration-200 p-5 ${className}`}
   >
     {children}
   </div>
@@ -39,25 +39,25 @@ export default function WeatherDashboard({
   if (!current) return null;
 
   return (
-    <section className="mt-5 mx-auto max-w-xl md:max-w-5xl lg:max-w-7xl xl:max-w-9xl grid grid-cols-1 lg:grid-cols-12 gap-8 w-full">
+    <section className="mt-5 mx-auto max-w-xl md:max-w-5xl lg:max-w-7xl xl:max-w-9xl grid grid-cols-1 lg:grid-cols-12 gap-8 w-full items-stretch">
       {/* Left Section: Current & Daily */}
-      <div className="lg:col-span-8 space-y-6">
+      <div className="lg:col-span-8 space-y-8">
         {/* Current Weather Hero */}
         <div
           className={`overflow-hidden rounded-2xl min-h-75 flex items-center justify-between p-8 ${
             loading
               ? "bg-paper animate-pulse"
-              : "bg-[url('/assets/images/bg-today-small.svg')] lg:bg-[url('/assets/images/bg-today-large.svg')] bg-cover bg-center"
+              : "bg-[url('/assets/images/bg-today-small.svg')] md:bg-[url('/assets/images/bg-today-large.svg')] bg-cover bg-center"
           }`}
         >
-          <div className="flex flex-col lg:flex-row justify-center items-center lg:justify-between lg:items-center gap-4 w-full">
-            <div className="flex flex-col gap-2 text-center lg:text-left items-center lg:items-start">
+          <div className="flex flex-col md:flex-row justify-center items-center md:justify-between md:items-center gap-4 w-full">
+            <div className="flex flex-col gap-2 text-center md:text-left items-center md:items-start">
               <h2 className="text-font-main text-4xl font-medium tracking-wide">
                 {`${location?.city || "Unknown"}, ${location?.country || ""}`}
               </h2>
               <p className="text-font-muted text-lg mt-1">{current.date}</p>
             </div>
-            <div className="flex items-center justify-between lg:justify-end gap-6">
+            <div className="flex items-center justify-between md:justify-end gap-6">
               <img
                 src={current.condition.icon}
                 alt={current.condition.label}
@@ -72,27 +72,21 @@ export default function WeatherDashboard({
 
         {/* Stats Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <Card className="flex flex-col justify-between min-h-35">
-            <span className="text-font-muted text-sm font-medium">
-              Feels Like
-            </span>
-            <span className="text-2xl font-semibold">{current.feelsLike}</span>
+          <Card className="flex flex-col justify-between min-h-30">
+            <span className="text-font-muted">Feels Like</span>
+            <span className="text-2xl text-font-main">{current.feelsLike}</span>
           </Card>
-          <Card className="flex flex-col justify-between min-h-35">
-            <span className="text-font-muted text-sm font-medium">
-              Humidity
-            </span>
-            <span className="text-2xl font-semibold">{current.humidity}</span>
+          <Card className="flex flex-col justify-between min-h-30">
+            <span className="text-font-muted">Humidity</span>
+            <span className="text-2xl text-font-main">{current.humidity}</span>
           </Card>
-          <Card className="flex flex-col justify-between min-h-35">
-            <span className="text-font-muted text-sm font-medium">Wind</span>
-            <span className="text-2xl font-semibold">{current.windSpeed}</span>
+          <Card className="flex flex-col justify-between min-h-30">
+            <span className="text-font-muted">Wind</span>
+            <span className="text-2xl text-font-main">{current.windSpeed}</span>
           </Card>
-          <Card className="flex flex-col justify-between min-h-35">
-            <span className="text-font-muted text-sm font-medium">
-              Precipitation
-            </span>
-            <span className="text-2xl font-semibold">
+          <Card className="flex flex-col justify-between min-h-30">
+            <span className="text-font-muted">Precipitation</span>
+            <span className="text-2xl text-font-main">
               {current.precipitation}
             </span>
           </Card>
@@ -109,27 +103,28 @@ export default function WeatherDashboard({
                 key={index}
                 className="flex flex-col items-center gap-2 py-4 px-2"
               >
-                <span className="text-sm font-semibold">{item.day}</span>
+                <span className="text-base font-semibold text-font-main">
+                  {item.day}
+                </span>
                 <img
                   src={item.condition.icon}
                   alt={item.condition.label}
-                  className="w-8 h-8"
+                  className="w-12 h-12"
                 />
-                <div className="flex gap-2">
-                  <span className="text-base font-bold">{item.tempMax}</span>
-                  <span className="text-xs text-font-muted">
-                    {item.tempMin}
+                <div className="flex w-full justify-between items-center px-2">
+                  <span className="text-base text-white/80">
+                    {item.tempMax}
                   </span>
+                  <span className="text-font-muted">{item.tempMin}</span>
                 </div>
               </Card>
             ))}
           </div>
         </section>
       </div>
-
       {/* Right Section: Hourly Forecast */}
-      <div className="lg:col-span-4">
-        <Card className="h-full flex flex-col max-h-212.5">
+      <div className="lg:col-span-4 h-168.5">
+        <Card className="h-full flex flex-col rounded-2xl">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-lg font-medium text-white/80">
               Hourly forecast
@@ -174,7 +169,9 @@ export default function WeatherDashboard({
                     alt={item.condition.label}
                     className="w-8 h-8"
                   />
-                  <span className="font-medium">{item.hour}</span>
+                  <span className="font-medium text-font-main">
+                    {item.hour}
+                  </span>
                 </div>
                 <span className="font-bold">{item.temp}</span>
               </div>

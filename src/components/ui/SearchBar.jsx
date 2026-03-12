@@ -38,7 +38,6 @@ export default function SearchBar({ setLocationQuery, isSearching }) {
    * @param {String} city
    */
   function handleHistory(city) {
-    setSearchInput(city);
     setLocationQuery(formatInput(city));
     setSearchHistory((prev) => addToHistory(prev, city));
     setIsFocused(false);
@@ -76,7 +75,7 @@ export default function SearchBar({ setLocationQuery, isSearching }) {
 
         {/* History Dropdown */}
         {isFocused && searchHistory.length > 0 && (
-          <ul className="absolute top-full left-0 w-full mt-2 p-2 bg-card rounded-xl overflow-hidden z-50 shadow-lg">
+          <ul className="hidden md:block absolute top-full left-0 w-full mt-2 p-2 bg-card rounded-xl overflow-hidden z-50 shadow-lg">
             {searchHistory.map((city) => (
               <li
                 key={city}

@@ -27,7 +27,7 @@ function App() {
   } = useWeatherForecast(coords, units);
 
   return (
-    <div className="flex flex-col space-y-12 items-center justify-start mx-auto max-w-xl md:max-w-5xl lg:max-w-7xl xl:max-w-9xl px-5 sm:px-12 lg:px-8">
+    <div className="flex flex-col space-y-12 mb-12 items-center justify-start mx-auto max-w-xl md:max-w-5xl lg:max-w-7xl xl:max-w-9xl px-5 sm:px-12 lg:px-8">
       <Header units={units} setUnits={setUnits} />
       <main className="flex flex-col gap-5 items-center w-full">
         <h1 className="text-center mb-5 md:mb-10">
