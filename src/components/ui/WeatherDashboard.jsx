@@ -52,7 +52,7 @@ export default function WeatherDashboard({
         >
           <div className="flex flex-col lg:flex-row justify-center items-center lg:justify-between lg:items-center gap-4 w-full">
             <div className="flex flex-col gap-2 text-center lg:text-left items-center lg:items-start">
-              <h2 className="text-2xl font-bold">
+              <h2 className="text-font-main text-4xl font-medium tracking-wide">
                 {`${location?.city || "Unknown"}, ${location?.country || ""}`}
               </h2>
               <p className="text-font-muted mt-1">{current.date}</p>
