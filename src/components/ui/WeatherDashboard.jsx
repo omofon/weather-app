@@ -55,7 +55,7 @@ export default function WeatherDashboard({
               <h2 className="text-font-main text-4xl font-medium tracking-wide">
                 {`${location?.city || "Unknown"}, ${location?.country || ""}`}
               </h2>
-              <p className="text-white/80 text-lg mt-1">{current.date}</p>
+              <p className="text-font-muted text-lg mt-1">{current.date}</p>
             </div>
             <div className="flex items-center justify-between lg:justify-end gap-6">
               <img
@@ -63,7 +63,7 @@ export default function WeatherDashboard({
                 alt={current.condition.label}
                 className="w-24 h-24"
               />
-              <span className="text-right text-8xl md:text-9xl font-bold tracking-wider text-font-main font-display">
+              <span className="text-right text-8xl md:text-9xl font-bold tracking-wide text-font-main font-display">
                 {current.temp}
               </span>
             </div>
